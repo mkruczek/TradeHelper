@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">TradeHelper</string>
+    <string name="logo_name">TRADE HELPER</string>
+    <string name="show_orders">Show Orders</string>
+    <string name="update_company">UpDate Company</string>
+    <string name="delete_company">Delete Company</string>
+    <string name="chose_options">Chose Options</string>
+    <string name="add_to_order">Add To Order</string>
+    <string name="update_product">UpDate Product</string>
+    <string name="delete_product">Delete Product</string>
+    <string name="make_order">Make Order</string>
+    <string name="company">COMPANY</string>
+    <string name="example_email">example@com.pl</string>
+    <string name="phone_number">phone number</string>
+    <string name="full_address">full address</string>
+    <string name="nip">nip</string>
+    <string name="email">email</string>
+    <string name="company_name">company name</string>
+    <string name="product_name">product name</string>
+    <string name="description">description</string>
+    <string name="example_price">price [12.00]</string>
+    <string name="add_from_gallery">Add From Gallery</string>
+    <string name="use_camera">Use Camera</string>
+</resources>
