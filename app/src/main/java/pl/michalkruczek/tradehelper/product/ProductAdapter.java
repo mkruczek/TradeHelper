@@ -16,6 +16,7 @@ import java.util.List;
 
 import pl.michalkruczek.tradehelper.R;
 import pl.michalkruczek.tradehelper.order.OrderActivity;
+import pl.michalkruczek.tradehelper.order.OrderAddActivity;
 
 
 /**
@@ -69,8 +70,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 productRV_onClick_makeOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //TODO - new Intent to CreateOrder.class with extras
-                        Intent intent = new Intent(context, OrderActivity.class);
+                        Intent intent = new Intent(context, OrderAddActivity.class);
                         intent.putExtra("product", product.getId());
                         context.startActivity(intent);
                         productAlertDialog.dismiss();
@@ -99,7 +99,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                         // TODO póki co usune sobie z listy, zeby choc troche dzialalo
                         AlertDialog deleteWarning = new AlertDialog.Builder(context)
                                 .setTitle("You want delete product!")
-                                .setMessage("If You do this, you delete all order for this product too. \nDo You want continou?") //TODO continou spelling??
+                                .setMessage("If You do this, you delete all order for this product too. \nDo You want continue?")
                                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {

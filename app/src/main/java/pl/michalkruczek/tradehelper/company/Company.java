@@ -29,19 +29,9 @@ public class Company implements Serializable {
     @SerializedName("email")
     @Expose
     private String email;
-
-    //TODO - delete all constructro when finish work
-    public Company() {
-    }
-
-    public Company(Long id, String name, String nip, String address, String phone, String email) {
-        this.id = id;
-        this.name = name;
-        this.nip = nip;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-    }
+    @SerializedName("userId")
+    @Expose
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -91,15 +81,16 @@ public class Company implements Serializable {
         this.email = email;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
-        return "Company{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", nip='" + nip + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return name;
     }
 }

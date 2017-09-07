@@ -2,7 +2,6 @@ package pl.michalkruczek.tradehelper.company;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -23,10 +22,13 @@ public interface CompanyAPI {
     @GET("all")
     Call<List<Company>> listCompany();
 
+    @GET("user/{login}")
+    Call<List<Company>> findByUser(@Path("login") String login);
+
     @POST("add")
     Call<String> addCompany(@Body Company company);
 
-    @PUT("updata/{id}")
+    @PUT("update/{id}")
     Call<String> updateCompany(@Path("id") long id, @Body Company company);
 
     @DELETE("delete/{id}")

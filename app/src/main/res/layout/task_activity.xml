@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pl.michalkruczek.tradehelper.order.OrderActivity">
-
+    tools:context="pl.michalkruczek.tradehelper.task.TaskActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/orderRV"
+        android:id="@+id/taskRV"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addOrderFab"
+        android:id="@+id/addTaskFab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

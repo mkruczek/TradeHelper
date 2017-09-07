@@ -1,4 +1,4 @@
-package pl.michalkruczek.tradehelper.company;
+package pl.michalkruczek.tradehelper.task;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +10,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import pl.michalkruczek.tradehelper.R;
+import pl.michalkruczek.tradehelper.company.Company;
+import pl.michalkruczek.tradehelper.company.CompanyAPI;
+import pl.michalkruczek.tradehelper.company.CompanyActivity;
+import pl.michalkruczek.tradehelper.company.CompanyAdapter;
+import pl.michalkruczek.tradehelper.company.CompanyAdd;
 import pl.michalkruczek.tradehelper.login.LoginActivity;
 import pl.michalkruczek.tradehelper.mainmenu.MainMenuActivity;
 import retrofit2.Call;
@@ -23,66 +28,72 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CompanyActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity {
 
-    public static final String BASE_COMPANY_URL = "http://80.211.196.76:8081/company/";
+    public static final String BASE_TASK_URL = "http://80.211.196.76:8081/task/";
 
     private Context context;
 
     private Retrofit retrofit;
-    private CompanyAPI companyAPI;
-    public static List<Company> companyList;
+    private TaskAPI taskAPI;
+    public static List<Task> taskList;
 
     private RecyclerView recyclerView;
     private LinearLayoutManager llm;
-    private CompanyAdapter companyAdapter;
+    private TaskAdapter taskAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.company_activity);
+        setContentView(R.layout.task_activity);
 
-        context = CompanyActivity.this;
+        context = TaskActivity.this;
 
-        FloatingActionButton addCompanyFab = (FloatingActionButton) findViewById(R.id.addCompanyFab);
-        addCompanyFab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
+        addTaskFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, CompanyAdd.class);
+                Intent intent = new Intent(context, TaskAdd.class);
                 context.startActivity(intent);
             }
         });
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_COMPANY_URL)
+                .baseUrl(BASE_TASK_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        companyAPI = retrofit.create(CompanyAPI.class);
-        final Call<List<Company>> call = companyAPI.findByUser(LoginActivity.user.getLogin());
+        taskAPI = retrofit.create(TaskAPI.class);
+        final Call<List<Task>> call = taskAPI.allTaskByUser(LoginActivity.user.getLogin());
 
-        call.enqueue(new Callback<List<Company>>() {
+        call.enqueue(new Callback<List<Task>>() {
             @Override
-            public void onResponse(Call<List<Company>> call, Response<List<Company>> response) {
+            public void onResponse(Call<List<Task>> call, Response<List<Task>> response) {
+                taskList = response.body();
 
-                companyList = response.body();
+                Collections.sort(taskList, new Comparator<Task>() {
+                    @Override
+                    public int compare(Task o1, Task o2) {
+                        return o1.getDate().compareTo(o2.getDate());
+                    }
+                });
 
-                recyclerView = (RecyclerView) findViewById(R.id.companyRV);
+                recyclerView = (RecyclerView) findViewById(R.id.taskRV);
                 llm = new LinearLayoutManager(context);
                 DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), llm.getOrientation());
                 recyclerView.addItemDecoration(dividerItemDecoration);
                 recyclerView.setLayoutManager(llm);
-                companyAdapter = new CompanyAdapter(context, companyList);
-                recyclerView.setAdapter(companyAdapter);
-
+                taskAdapter = new TaskAdapter(context, taskList);
+                recyclerView.setAdapter(taskAdapter);
             }
 
             @Override
-            public void onFailure(Call<List<Company>> call, Throwable t) {
+            public void onFailure(Call<List<Task>> call, Throwable t) {
 
             }
         });
+
 
     }
 
@@ -93,4 +104,3 @@ public class CompanyActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 }
-

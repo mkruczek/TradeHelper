@@ -52,11 +52,13 @@ public class CompanyUpdate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Company newCompany = new Company();
+                newCompany.setId(companyUpdate.getId());
                 newCompany.setName(companyUpdate_name.getText().toString());
                 newCompany.setNip(companyUpdate_nip.getText().toString());
                 newCompany.setAddress(companyUpdate_address.getText().toString());
                 newCompany.setPhone(companyUpdate_phone.getText().toString());
                 newCompany.setEmail(companyUpdate_email.getText().toString());
+                newCompany.setUserId(companyUpdate.getUserId());
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(CompanyActivity.BASE_COMPANY_URL)
@@ -70,9 +72,6 @@ public class CompanyUpdate extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
 
-                        //TODO retrofit po @POST and @PUT nie wchodzi do onResponse!!
-                        // metoeda wywalona poza onRespond tez działa
-                        //można wynieść poza tą metodę, tam gdzie teraz jest ingo ze uzywac gdy nie ma sieci
                     }
 
                     @Override
@@ -81,7 +80,6 @@ public class CompanyUpdate extends AppCompatActivity {
                     }
                 });
 
-                //TODO spawdzić co z retrofitem i jego brkaiem egzekucji onResponse
                 Toast.makeText(CompanyUpdate.this, "Update Company", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CompanyUpdate.this, CompanyActivity.class);
                 CompanyUpdate.this.startActivity(intent);

@@ -13,36 +13,47 @@ public class Order implements Serializable{
 
     @SerializedName("id")
     @Expose
-    private long id;
+    private Long id;
     @SerializedName("companyId")
     @Expose
-    private long companyId;
+    private Long companyId;
     @SerializedName("productId")
     @Expose
-    private long productId;
+    private Long productId;
+    @SerializedName("userId")
+    @Expose
+    private Long userId;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(long companyId) {
+    public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
 
-    public long getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override

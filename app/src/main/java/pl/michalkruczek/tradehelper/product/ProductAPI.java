@@ -17,8 +17,6 @@ import retrofit2.http.Path;
 
 public interface ProductAPI {
 
-    //TODO - check all request
-
     @GET("{id}")
     Call<Product> singleProduct (@Path("id") long id);
 
@@ -28,7 +26,7 @@ public interface ProductAPI {
     @POST("add")
     Call<String> addProduct(@Body Product product);
 
-    @PUT("updata/{id}")
+    @PUT("update/{id}")
     Call<String> updataProduct(@Path("id") long id, @Body Product product);
 
     @DELETE("delete/{id}")

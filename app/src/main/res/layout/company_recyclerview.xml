@@ -33,6 +33,14 @@
                 app:srcCompat="@mipmap/rv_email" />
 
             <ImageButton
+                android:id="@+id/companyRV_doMap"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/rv_map" />
+
+            <ImageButton
                 android:id="@+id/companyRV_doPhone"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ package pl.michalkruczek.tradehelper.company;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -69,12 +70,25 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyV
         holder.companyRV_doEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "test", Toast.LENGTH_SHORT).show();
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto", "", null));
+                        "mailto", company.getEmail(), null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT,
                         "Michał Kruczek - Państwa Programista");
                 context.startActivity(emailIntent);
+            }
+        });
+
+        holder.companyRV_doMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String URL = "https://www.google.com/maps/dir/"
+                        + "?api=1&travelmode=driving&dir_action=navigate&destination="
+                        + company.getAddress();
+                Uri location = Uri.parse(URL);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                context.startActivity(mapIntent);
+
             }
         });
 
@@ -119,11 +133,10 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyV
                 companyRV_onClick_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(context, "DELETE - Not avalible yet.", Toast.LENGTH_SHORT).show();
                         //TODO - usówanie zamówień danej firmy
                         AlertDialog deleteWarning = new AlertDialog.Builder(context)
                                 .setTitle("You want delete company!")
-                                .setMessage("If You do this, you delete all order for this company too. \nDo You want continou?") //TODO continou spelling??
+                                .setMessage("If You do this, you delete all order for this company too. \nDo You want continue?")
                                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -139,9 +152,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyV
                                         call.enqueue(new Callback<String>() {
                                             @Override
                                             public void onResponse(Call<String> call, Response<String> response) {
-                                                //TODO przy @DELETE też nie wchodzi do onResponse
-                                                //sprawdzić czy da się to zmienić
-                                                // odpowiedź poza metodą też działa
+
                                             }
 
                                             @Override
@@ -179,6 +190,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyV
         private TextView comapnyRV_name;
         private ImageButton companyRV_doEmail;
         private ImageButton companyRV_doPhone;
+        private ImageButton companyRV_doMap;
         private TextView companyRV_nip;
         private TextView companyRV_phone;
         private TextView companyRV_email;
@@ -194,6 +206,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyV
             companyRV_address = (TextView) itemView.findViewById(R.id.companyRV_address);
             companyRV_doEmail = (ImageButton) itemView.findViewById(R.id.companyRV_doEmail);
             companyRV_doPhone = (ImageButton) itemView.findViewById(R.id.companyRV_doPhone);
+            companyRV_doMap = (ImageButton) itemView.findViewById(R.id.companyRV_doMap);
         }
     }
 

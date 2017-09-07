@@ -8,9 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import pl.michalkruczek.tradehelper.R;
+import pl.michalkruczek.tradehelper.login.LoginActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,6 +52,7 @@ public class CompanyAdd extends AppCompatActivity {
                 newCompany.setAddress(companyAdd_address.getText().toString());
                 newCompany.setPhone(companyAdd_phone.getText().toString());
                 newCompany.setEmail(companyAdd_email.getText().toString());
+                newCompany.setUserId(LoginActivity.user.getId());
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(CompanyActivity.BASE_COMPANY_URL)
@@ -65,15 +65,12 @@ public class CompanyAdd extends AppCompatActivity {
                 call.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        //TODO ten sam problm co w update z @POST i @PUT
-                        // wyniesione poza ciało onResponse
                     }
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
                     }
                 });
 
-                //TODO pobawić sie z onResponse retrofita
                 companyAdd_name.setText("");
                 companyAdd_nip.setText("");
                 companyAdd_address.setText("");

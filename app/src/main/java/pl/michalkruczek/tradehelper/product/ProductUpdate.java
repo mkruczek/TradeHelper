@@ -84,7 +84,6 @@ public class ProductUpdate extends AppCompatActivity {
                 call.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        //TODO problemy retrofita
                     }
 
                     @Override

@@ -10,13 +10,20 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.concurrent.ExecutionException;
 
 import pl.michalkruczek.tradehelper.company.Company;
 import pl.michalkruczek.tradehelper.company.CompanyAPI;
 import pl.michalkruczek.tradehelper.company.CompanyActivity;
+import pl.michalkruczek.tradehelper.login.LoginActivity;
+import pl.michalkruczek.tradehelper.login.User;
+import pl.michalkruczek.tradehelper.login.UserAPI;
 import pl.michalkruczek.tradehelper.order.Order;
+
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,16 +36,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyHelpClass {
 
+    static Boolean result = false;
+    static User user;
+
     public static void main(String[] args) {
-        BigDecimal bdTestDOUBLE = new BigDecimal(0.745);
-        BigDecimal bdTestVALUEOF = BigDecimal.valueOf(0.745);
-        BigDecimal bdTestSTRING = new BigDecimal("0.745");
-        bdTestDOUBLE = bdTestDOUBLE.setScale(2, BigDecimal.ROUND_HALF_UP);
-        bdTestVALUEOF = bdTestVALUEOF.setScale(2, BigDecimal.ROUND_HALF_UP);
-        bdTestSTRING = bdTestSTRING.setScale(2, BigDecimal.ROUND_HALF_UP);
-        System.out.println("bdTestDOUBLE:" + bdTestDOUBLE);
-        System.out.println("bdTestVALUEOF:" + bdTestVALUEOF);
-        System.out.println("bdTestSTRING:" + bdTestSTRING);
+
+
+
     }
 
     private static final boolean LOG_VALUE = true;

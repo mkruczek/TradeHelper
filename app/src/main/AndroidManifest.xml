@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AppCompat.Light">
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".mainmenu.MainMenuActivity"
+            android:name=".login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,13 +23,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".mainmenu.MainMenuActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".company.CompanyActivity" />
         <activity android:name=".order.OrderActivity" />
         <activity android:name=".product.ProductActivity" />
-        <activity android:name=".company.CompanyAdd" />
-        <activity android:name=".company.CompanyUpdate" />
-        <activity android:name=".product.ProductAdd" />
-        <activity android:name=".product.ProductUpdate" />
+        <activity
+            android:name=".company.CompanyAdd"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".company.CompanyUpdate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".product.ProductAdd"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".product.ProductUpdate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".order.OrderAddActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".task.TaskActivity" />
+        <activity
+            android:name=".task.TaskAdd"
+            android:screenOrientation="portrait" />
+        <activity android:name=".task.TaskUpdate"></activity>
     </application>
 
 </manifest>

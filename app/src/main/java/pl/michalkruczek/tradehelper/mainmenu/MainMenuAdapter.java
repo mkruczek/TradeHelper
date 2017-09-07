@@ -16,6 +16,7 @@ import pl.michalkruczek.tradehelper.R;
 import pl.michalkruczek.tradehelper.company.CompanyActivity;
 import pl.michalkruczek.tradehelper.order.OrderActivity;
 import pl.michalkruczek.tradehelper.product.ProductActivity;
+import pl.michalkruczek.tradehelper.task.TaskActivity;
 
 /**
  * Created by mikr on 28/08/17.
@@ -87,10 +88,11 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
                     activity.startActivity(orderIntent);
                     break;
                 case 3:
-                    Toast.makeText(activity, "Day Plan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Report\nAvailable next version!", Toast.LENGTH_SHORT).show();
                     break;
                 case 4:
-                    Toast.makeText(activity, "Notes", Toast.LENGTH_SHORT).show();
+                    Intent taskIntent = new Intent(activity, TaskActivity.class);
+                    activity.startActivity(taskIntent);
                     break;
                 case 5:
                     Toast.makeText(activity, "Info", Toast.LENGTH_SHORT).show();

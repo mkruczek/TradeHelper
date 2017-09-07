@@ -1,18 +1,16 @@
-package pl.michalkruczek.tradehelper.product;
+package pl.michalkruczek.tradehelper.task;
+
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
- * Created by mikr on 27/08/17.
+ * Created by mikr on 07/09/17.
  */
 
-public class Product implements Serializable{
-
-    //TODO addProduct - dodawanie foto??
+public class Task implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -23,10 +21,15 @@ public class Product implements Serializable{
     @SerializedName("description")
     @Expose
     private String description;
-    @SerializedName("price")
+    @SerializedName("date")
     @Expose
-    private BigDecimal price;
-
+    private Long date;
+    @SerializedName("done")
+    @Expose
+    private Boolean done;
+    @SerializedName("userId")
+    @Expose
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -52,16 +55,27 @@ public class Product implements Serializable{
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public Long getDate() {
+        return date;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setDate(Long date) {
+        this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public Boolean getDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

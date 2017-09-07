@@ -69,30 +69,25 @@ public class ProductAdd extends AppCompatActivity {
                 newProduct.setPrice(BigDecimal.valueOf(Double.valueOf(productAdd_price.getText().toString())));
 
 
-                //TODO do testu offline
-                newProduct.setId(100L);
-                ProductActivity.productList.add(newProduct);
 
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(ProductActivity.BASE_PRODUCT_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
-//                Retrofit retrofit = new Retrofit.Builder()
-//                        .baseUrl(ProductActivity.BASE_PRODUCT_URL)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                ProductAPI productAPI = retrofit.create(ProductAPI.class);
-//                Call<String> call = productAPI.addProduct(newProduct);
-//
-//                call.enqueue(new Callback<String>() {
-//                    @Override
-//                    public void onResponse(Call<String> call, Response<String> response) {
-//                        //TODO problemy retrofita
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<String> call, Throwable t) {
-//
-//                    }
-//                });
+                ProductAPI productAPI = retrofit.create(ProductAPI.class);
+                Call<String> call = productAPI.addProduct(newProduct);
+
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                    }
+                });
 
                 productAdd_name.setText("");
                 productAdd_description.setText("");
